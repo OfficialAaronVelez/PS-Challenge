@@ -3,9 +3,23 @@ Configuration file for PayCheck-to-Portfolio AI
 Contains API keys, constants, and app settings
 """
 
+import os
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
+
 # Google AI Configuration
-GOOGLE_AI_API_KEY = "AIzaSyDnWWA_BrdGi54GV9mh7xUPJfYTLKeE1mk"
+GOOGLE_AI_API_KEY = os.getenv("GOOGLE_AI_API_KEY")
 GEMINI_MODEL = "gemini-2.5-flash"
+
+# Validate required environment variables
+if not GOOGLE_AI_API_KEY:
+    raise ValueError(
+        "GOOGLE_AI_API_KEY environment variable is required. "
+        "Please create a .env file with your API key. "
+        "See env.example for reference."
+    )
 
 # Streamlit Page Configuration
 PAGE_CONFIG = {
